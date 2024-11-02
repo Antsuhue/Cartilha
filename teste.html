@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page de Teste</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        .content {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .content h1 {
+            color: #333;
+        }
+        .content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #666;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Bem-vindo à Landing Page de Teste</h1>
+    </div>
+
+    <div class="content">
+        <h1>Explore Nossos Recursos</h1>
+        <p>Esta é uma página de teste simples onde você pode experimentar a implementação de widgets e scripts adicionais.</p>
+        <p>Veja como diferentes elementos se comportam e teste recursos de acessibilidade.</p>
+    </div>
+
+    <div class="footer">
+        <p>Todos os direitos reservados © 2024</p>
+    </div>
+
+    <!-- Script do Widget da accessiBe -->
+    <script>
+        (function(){
+            var s = document.createElement('script');
+            s.src = 'https://acsbapp.com/apps/app/dist/js/app.js';
+            s.async = true;
+            s.onload = function(){
+                acsbJS.init({
+                    hideTrigger: false,
+                    language: 'en',
+                    position: 'right',
+                    leadColor: '#146ff8',
+                    triggerColor: '#146ff8',
+                    triggerIcon: 'people',
+                    triggerSize: 'medium',
+                    triggerPositionX: 'right',
+                    triggerPositionY: 'bottom',
+                    triggerOffsetX: 20,
+                    triggerOffsetY: 20
+                });
+            };
+            document.head.appendChild(s);
+        })();
+    </script>
+</body>
+</html>
