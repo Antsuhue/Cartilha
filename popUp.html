@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pop-up Inspirado</title>
+  <style>
+    /* Overlay cinza escuro */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: none; /* Inicialmente oculto */
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    /* Estilo do pop-up */
+    .popup {
+      background-color: #ffffff; /* Fundo branco */
+      padding: 0;
+      width: 360px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: #1e3a8a; /* Texto azul escuro */
+      position: relative;
+    }
+
+    /* Imagem no topo */
+    .popup img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Conteúdo do pop-up */
+    .popup-content {
+      padding: 20px;
+      text-align: center;
+      background-color: #f0f4f8; /* Fundo azul claro */
+    }
+
+    .popup-content h2 {
+      font-size: 22px;
+      margin: 10px 0;
+      font-weight: bold;
+      font-family: 'Georgia', serif;
+      color: #1e3a8a; /* Azul escuro */
+    }
+
+    .popup-content p {
+      font-size: 16px;
+      color: #1e3a8a; /* Azul escuro */
+      margin: 10px 0;
+    }
+
+    .popup-content .subtext {
+      font-size: 14px;
+      color: #6b7280; /* Cinza suave */
+      margin-bottom: 20px;
+    }
+
+    /* Botões */
+    .popup-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .popup-buttons button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: 2px solid #4a90e2; /* Borda azul */
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: transparent;
+      color: #4a90e2; /* Azul para o texto */
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .popup-buttons .btn-primary {
+      background-color: #4a90e2; /* Fundo azul para o botão principal */
+      color: #ffffff; /* Texto branco */
+      border: none;
+    }
+
+    .popup-buttons .btn-primary:hover {
+      background-color: #357abd; /* Azul mais escuro no hover */
+    }
+
+    .popup-buttons button:hover {
+      background-color: #4a90e2; /* Fundo azul no hover para o botão secundário */
+      color: #ffffff; /* Texto branco no hover */
+    }
+
+    /* Botão de fechar */
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 18px;
+      cursor: pointer;
+      color: #4a90e2; /* Azul para o botão de fechar */
+      background: none;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Overlay e Pop-up -->
+  <div class="overlay" id="overlay">
+    <div class="popup">
+      <button class="close-btn" onclick="closePopup()">×</button>
+      <img src="https://via.placeholder.com/360x200" alt="Imagem do Pop-up"> <!-- Substitua pela imagem desejada -->
+      <div class="popup-content">
+        <h2>Take a look.</h2>
+        <p><strong>Don’t miss our new blog posts!</strong></p>
+        <p class="subtext">Here’s a collection of budget decoration ideas and tips that will inspire you.</p>
+        <div class="popup-buttons">
+          <button class="btn-secondary" onclick="closePopup()">Maybe Later</button>
+          <button class="btn-primary">Read Article</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Função para fechar o pop-up e definir o cookie
+    function closePopup() {
+      document.getElementById('overlay').style.display = 'none';
+      setCookie("popupShown", "true", 30); // Define o cookie por 30 dias
+    }
+
+    // Função para definir um cookie
+    function setCookie(name, value, days) {
+      let expires = "";
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    // Função para obter um cookie
+    function getCookie(name) {
+      const nameEQ = name + "=";
+      const ca = document.cookie.split(';');
+      for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+
+    // Exibir o pop-up apenas se o cookie não existir
+    window.onload = function() {
+      if (!getCookie("popupShown")) {
+        document.getElementById('overlay').style.display = 'flex';
+      }
+    };
+  </script>
+</body>
+</html>
